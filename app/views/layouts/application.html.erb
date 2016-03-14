@@ -2,30 +2,43 @@
 <html>
 <head>
   <title>Unconventional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
 
-  <% flash.each do |key, value| %>
-    <% if value.class == Array %>
-        <div class="<%= flash_class(key) %>">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <% value.each do |message| %>
-                <%= message %>
-                </br>
-            <% end %>
-        </div>
-    <% else %>
-        <div class="<%= flash_class(key) %>">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <%= value %>
-        </div>
-    <% end %>
-<% end %>
+    <%= devise_error_messages! %>
 
-<%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/index">Unconventional</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active">
+          <li><a href="/about">About</a></li>
+        </ul>
+        <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/users/<%= current_user.id %>"><span class="glyphicon glyphicon-user"></span> <%= current_user.username %></a></li>
+          <li><a data-method='delete' href="/users/sign_out"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+        </ul>
+        <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+        <% end %>
+      </div>
+    </nav>
+
+    <%= render 'layouts/messages' %>
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>

@@ -23,6 +23,8 @@ gem 'pry'
 gem 'bcrypt'
 gem 'devise'
 gem 'stripe'
+gem "carrierwave"
+gem "cloudinary"
 
 group :development, :test do
   gem 'byebug'

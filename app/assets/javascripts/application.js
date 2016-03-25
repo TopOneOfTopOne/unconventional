@@ -15,3 +15,9 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+
+$(document).ready(function(){
+  $('p a').embedly({
+    key: '7918a7b91ef74f3790e4e9d15e0f7aa2'
+  })
+})

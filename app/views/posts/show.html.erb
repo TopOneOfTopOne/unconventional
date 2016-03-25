@@ -1,0 +1,9 @@
+<h1><%= @post.title %></h1>
+
+<p>
+ <a href="http://embed.ly" class="embedly-card">Embedly</a>
+</p>
+
+<p><%= @post.description %>
+
+<%= cl_image_tag(@post.picture_url(:large), width: 200, height: 200, :default_image => @post.picture.url) %>

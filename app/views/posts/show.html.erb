@@ -7,3 +7,7 @@
 <p><%= @post.description %>
 
 <%= cl_image_tag(@post.picture_url(:large), width: 200, height: 200, :default_image => @post.picture.url) %>
+
+<%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' %>
+
+<%= link_to "Delete Post", @post, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this post?'} %>

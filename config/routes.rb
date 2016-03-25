@@ -3,8 +3,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
 
-  resources :posts
-
+  resources :projects do
+    resources :posts
+  end
+  
   get '/index' => 'welcome#index'
 
   get '/about' => 'welcome#about'

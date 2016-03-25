@@ -8,14 +8,27 @@
 end
 users = User.all
 
-15.times do
-  Post.create(
-  title: Faker::Hipster.sentence(3),
-  picture: nil,
+10.times do
+  Project.create(
+  title: Faker::Book.title,
+  description: Faker::Hipster.paragraph,
   user: users.sample
+  )
+end
+projects = Project.all
+
+20.times do
+  project = project.sample
+
+  Post.create(
+  title: Faker::Book.title,
+  picture: nil,
+  project: projects,
+  user: project.user
   )
 end
 
 puts "Seed finished"
 puts "#{User.count} users created"
+puts "#{Project.count} topics created"
 puts "#{Post.count} posts created"

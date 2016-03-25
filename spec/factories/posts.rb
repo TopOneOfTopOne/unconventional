@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :post do
     title Faker::Book.title
-    picture "res.cloudinary.com/hwllnpiwd/image/upload/t_media_lib_thumb/sample.jpg"
+    description Faker::Hipster.paragraph
+    picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'Test10.jpg')) }
     user
   end
 end

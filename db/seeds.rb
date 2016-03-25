@@ -11,7 +11,7 @@ users = User.all
 15.times do
   Post.create(
   title: Faker::Hipster.sentence(3),
-  picture: "sample.jpg",
+  picture: nil,
   user: users.sample
   )
 end

@@ -40,16 +40,16 @@ RSpec.describe PostsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of Post by 1" do
-      expect{post :create, user_id: user.id, post: {title: "Test Title", picture: "sample"}}.to change(Post,:count).by(1)
+      expect{post :create, user_id: user.id, post: {title: "Test Title", description: "This is my test image", picture: "lubxugqgq1r2brmavkaf.jpg"}}.to change(Post,:count).by(1)
     end
 
     it "assigns the new post to @post" do
-      post :create, user_id: user.id, post: {title: "Test Title", picture: "sample"}
+      post :create, user_id: user.id, post: {title: "Test Title", description: "This is my test image", picture: "lubxugqgq1r2brmavkaf.jpg"}
       expect(assigns(:post)).to eq Post.last
     end
 
     it "redirects to the new post" do
-      post :create, user_id: user.id, post: {title: "Test Title", picture: "sample"}
+      post :create, user_id: user.id, post: {title: "Test Title", description: "This is my test image", picture: "lubxugqgq1r2brmavkaf.jpg"}
       expect(response).to redirect_to Post.last
     end
   end

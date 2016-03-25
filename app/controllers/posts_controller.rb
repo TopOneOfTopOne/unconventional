@@ -12,11 +12,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = User.find(current_user)
-    @post = Post.new(post_params)
+    @user = current_user
+    @post = @user.posts.new(post_params)
 
 
-    if @post.save
+    if @post.save!
       flash[:notice] = "Post was saved"
       redirect_to @post
     else
@@ -26,6 +26,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :picture, :picture_cache)
+    params.require(:post).permit(:title, :description, :picture, :picture_cache)
   end
 end

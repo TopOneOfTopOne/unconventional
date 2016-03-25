@@ -1,9 +1,15 @@
 <%= form_for @post do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-
+<br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+<br>
   <%= f.hidden_field :picture_cache %>
   <%= f.file_field :picture %>
+
+  <!-- Or
+  Embed an Image -->
 
   <%= f.submit "Upload File" %>
 <% end %>

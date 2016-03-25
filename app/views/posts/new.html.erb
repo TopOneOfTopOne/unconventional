@@ -1,4 +1,4 @@
-<%= form_for @post do |f| %>
+<%= form_for [@project, @post] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
 <br>
@@ -11,5 +11,5 @@
   <!-- Or
   Embed an Image -->
 
-  <%= f.submit "Upload File" %>
+  <%= f.submit "Post Content" %>
 <% end %>

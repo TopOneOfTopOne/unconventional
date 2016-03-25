@@ -8,17 +8,19 @@ class PostsController < ApplicationController
   end
 
   def new
+    @project = Project.find(params[:project_id])
     @post = Post.new
   end
 
   def create
-    @user = current_user
-    @post = @user.posts.new(post_params)
+    @project = Project.find(params[:project_id])
+    @post = @project.posts.build(post_params)
+    @post.user = current_user
 
 
     if @post.save!
       flash[:notice] = "Post was saved"
-      redirect_to @post
+      redirect_to [@project, @post]
     else
       flash.now[:alert] = "There was a problem saving the post"
       render :new
@@ -36,7 +38,7 @@ class PostsController < ApplicationController
 
     if @post.save!
       flash[:notice] = "Post was saved"
-      redirect_to @post
+      redirect_to [@post.project, @post]
     else
       flash.now[:alert] = "There was a problem saving the post"
       render :edit
@@ -48,7 +50,7 @@ class PostsController < ApplicationController
 
   if @post.destroy
     flash[:notice] = "\"#{@post.title}\" was deleted successfully."
-    redirect_to posts_path
+    redirect_to @post.project
   else
     flash.now[:alert] = "There was an error deleting the post."
     render :show

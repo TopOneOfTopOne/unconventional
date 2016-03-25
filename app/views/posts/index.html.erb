@@ -1,4 +1,4 @@
-<h1>All Posts</h1>
+<h1>All Projects</h1>
 <% @posts.each do |post| %>
   <p><%= link_to post_path(post.id) do %>
     <%= cl_image_tag(post.picture_url(:large), width: 200, height: 200, :default_image => post.picture.url) %>

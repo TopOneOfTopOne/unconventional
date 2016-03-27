@@ -5,6 +5,8 @@
 <% @project.posts.each do |post| %>
 <!--
 <h4><%= link_to post.title, project_post_path(@project, post) %></h4>
+
+Set up conditional to check for embedly vs cloudinary
 -->
   <%= link_to project_post_path(@project, post) do %>
     <%= cl_image_tag(post.picture_url(:large), width: 200, height: 200, :default_image => post.picture.url) %>

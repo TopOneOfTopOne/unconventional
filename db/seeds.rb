@@ -1,5 +1,5 @@
 5.times do
-  User.create(
+  User.create!(
   username: Faker::Name.last_name,
   email: Faker::Internet.safe_email,
   password: "password",
@@ -9,7 +9,7 @@ end
 users = User.all
 
 10.times do
-  Project.create(
+  Project.create!(
   title: Faker::Book.title,
   description: Faker::Hipster.paragraph,
   user: users.sample
@@ -18,17 +18,17 @@ end
 projects = Project.all
 
 20.times do
-  project = project.sample
+  project = projects.sample
 
-  Post.create(
+  Post.create!(
   title: Faker::Book.title,
   picture: nil,
-  project: projects,
+  project: project,
   user: project.user
   )
 end
 
 puts "Seed finished"
 puts "#{User.count} users created"
-puts "#{Project.count} topics created"
+puts "#{Project.count} projects created"
 puts "#{Post.count} posts created"

@@ -2,15 +2,16 @@
 
 <p><%=@project.description %></p>
 
-<% @project.posts.each do |post| %>
-<!--
-<h4><%= link_to post.title, project_post_path(@project, post) %></h4>
-
-Set up conditional to check for embedly vs cloudinary
--->
-  <%= link_to project_post_path(@project, post) do %>
-    <%= cl_image_tag(post.picture_url(:large), width: 200, height: 200, :default_image => post.picture.url) %>
+<div class="transitions-enabled" id="posts">
+  <% @project.posts.each do |post| %>
+  <div class="box panel panel-default">
+    <%= link_to project_post_path(@project, post) do %>
+      <%= cl_image_tag(post.picture_url, :default_image => post.picture.url) %>
+    <% end %>
+    <p class="user">
+      <%= @post %>
+    </p>
+  </div>
   <% end %>
-<% end %>
-
-<%= link_to "New Post", new_project_post_path(@project), class: 'btn btn-success' %>
+</div>
+<%= link_to "New Post", new_project_post_path(@project), class: 'btn btn-primary' %>

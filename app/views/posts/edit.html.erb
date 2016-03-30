@@ -1,15 +1,33 @@
-<%= form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-<br>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-<br>
-  <%= f.hidden_field :picture_cache %>
-  <%= f.file_field :picture %>
-
-  <!-- Or
-  Embed an Image -->
-
-  <%= f.submit "Upload File" %>
+<% if @post.errors.any? %>
+  <div class="alert alert-danger">
+    <h4><%= pluralize(@post.errors.count, "error") %>.</h4>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+
+<div class="col-md-8 col-md-offset-2" id="edit_page">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1>Edit Your Post</h1>
+      </div>
+      <div class="panel-body">
+        <div class="current_image">
+          <strong class="center">Current Image</strong>
+            <p>
+              <%= link_to @post.description, @post.description, class: 'embedly-card' %>
+            </p>
+
+            <%= cl_image_tag(@post.picture_url(:large), width: 200, height: 200, :default_image => @post.picture.url) %>
+
+        </div>
+        <%= render partial: 'form', locals: { project: @post.project, post: @post } %>
+        <%= link_to "Cancel", project_post_path %>
+      </div>
+    </div>
+  </div>
+</div>

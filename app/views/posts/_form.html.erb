@@ -1,0 +1,26 @@
+<script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript">
+<script src="//cdn.embedly.com/widgets/platform.js"></script>
+
+<%= form_for [project, post] do |f| %>
+
+<div class="form-group description">
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control', placeholder: "Enter post title" %>
+</div>
+<br>
+<div class="form-group description">
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control', placeholder: "Enter your description" %>
+</div>
+<div class="form-group message"></div>
+<div class="form-group embedlink">
+  <%= f.label :embedlink %>
+  <%= f.text_field :embedlink, class: 'form-control', placeholder: "Put image URL here to embed it" %>
+</div>
+<div class="form-group picture">
+  <%= f.hidden_field :picture_cache %>
+  <%= f.file_field :picture %>
+</div>
+
+  <%= f.submit "Post Content", class: "btn btn-primary" %>
+<% end %>

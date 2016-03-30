@@ -25,6 +25,7 @@ gem 'devise'
 gem 'stripe'
 gem "carrierwave"
 gem "cloudinary"
+gem 'masonry-rails', '~> 0.2.4'
 
 group :development, :test do
   gem 'byebug'

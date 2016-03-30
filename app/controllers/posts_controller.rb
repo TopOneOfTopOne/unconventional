@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order("created_at DESC")
   end
 
   def show
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def new
     @project = Project.find(params[:project_id])
-    @post = Post.new
+    @post = current_user.posts.build
   end
 
   def create
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @post.user = current_user
 
 
-    if @post.save!
+    if @post.save
       flash[:notice] = "Post was saved"
       redirect_to [@project, @post]
     else
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     @post.assign_attributes(post_params)
 
 
-    if @post.save!
+    if @post.save
       flash[:notice] = "Post was saved"
       redirect_to [@post.project, @post]
     else
@@ -58,6 +58,6 @@ class PostsController < ApplicationController
 end
 
   def post_params
-    params.require(:post).permit(:title, :description, :picture, :picture_cache)
+    params.require(:post).permit(:title, :description, :embedlink, :picture, :picture_cache)
   end
 end

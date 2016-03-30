@@ -1,6 +1,9 @@
 <h1><%= @user.username %></h1>
 <p id="index-title">User membership status: <%= @user.role.capitalize %></p>
+<p><%= link_to "Edit Account Details", edit_user_registration_path %></p>
 
 <% @user.projects.each do |project| %>
   <%= link_to project.title, project %>
 <% end %>
+
+<%= link_to "Create New Project", new_project_path %>

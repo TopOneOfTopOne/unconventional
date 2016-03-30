@@ -1,12 +1,19 @@
+<script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript">
+<script src="//cdn.embedly.com/widgets/platform.js"></script>
 <%= form_for [@project, @post] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
 <br>
+<div id="description">
   <%= f.label :description %>
   <%= f.text_area :description %>
+</div>
+<div id="message"></div>
 <br>
+<div id="picture">
   <%= f.hidden_field :picture_cache %>
   <%= f.file_field :picture %>
+</div>
 
   <%= f.submit "Post Content" %>
 <% end %>

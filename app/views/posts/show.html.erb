@@ -5,8 +5,7 @@
         <p>
           <%= link_to @post.embedlink, @post.embedlink, class: 'embedly-card' %>
         </p>
-
-        <%= cl_image_tag(@post.picture_url, :default_image => @post.picture.url) %>
+        <%= cl_image_tag(@post.picture_url, width: 200, height: 200, :default_image => @post.picture.url) %>
         <div class="panel-body">
           <h1>
             <%= @post.title %>

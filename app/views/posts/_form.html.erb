@@ -12,7 +12,6 @@
   <%= f.label :description %>
   <%= f.text_area :description, class: 'form-control', placeholder: "Enter your description" %>
 </div>
-<div class="form-group message"></div>
 <div class="form-group embedlink">
   <%= f.label :embedlink %>
   <%= f.text_field :embedlink, class: 'form-control', placeholder: "Put image URL here to embed it" %>
@@ -21,6 +20,7 @@
   <%= f.hidden_field :picture_cache %>
   <%= f.file_field :picture %>
 </div>
+<div class="form-group message"></div>
 
   <%= f.submit "Post Content", class: "btn btn-primary" %>
 <% end %>

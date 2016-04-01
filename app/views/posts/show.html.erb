@@ -2,10 +2,13 @@
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
       <div class="panel-heading pin_image">
-        <p>
-          <%= link_to @post.embedlink, @post.embedlink, class: 'embedly-card' %>
-        </p>
-        <%= cl_image_tag(@post.picture_url, width: 200, height: 200, :default_image => @post.picture.url) %>
+        <% if @post.embedlink? %>
+          <p class="embedly">
+            <%= link_to @post.embedlink, @post.embedlink, class: 'embedly-card' %>
+          </p>
+        <% else %>
+          <%= cl_image_tag(@post.picture_url, width: 200, height: 200, :default_image => @post.picture.url) %>
+        <% end %>
         <div class="panel-body">
           <h1>
             <%= @post.title %>

@@ -5,11 +5,17 @@
 <div class="transitions-enabled" id="posts">
   <% @project.posts.each do |post| %>
   <div class="box panel panel-default">
-    <%= link_to project_post_path(@project, post) do %>
-      <%= cl_image_tag(post.picture_url, :default_image => post.picture.url) %>
+    <% if post.embedlink? %>
+      <p class="embedly">
+        <%= link_to post.embedlink, post.embedlink, class: 'embedly-card' %>
+      </p>
+    <% else %>
+      <%= link_to project_post_path(@project, post) do %>
+        <%= cl_image_tag(post.picture_url, :default_image => post.picture.url) %>
+      <% end %>
     <% end %>
     <p class="user">
-      <%= @post %>
+      <%= post.title %>
     </p>
   </div>
   <% end %>

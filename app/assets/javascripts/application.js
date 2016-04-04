@@ -18,9 +18,10 @@
 //= require bootstrap
 
 $(document).ready(function(){
-  $('.embedly').embedly({
-    key: '7918a7b91ef74f3790e4e9d15e0f7aa2'
-  });
+
+//  $('.embedly').embedly({
+//    key: '7918a7b91ef74f3790e4e9d15e0f7aa2'
+//  });
 
   $('.embedlink').on('keyup', function(){
     console.log("keyup");
@@ -47,4 +48,23 @@ $(document).ready(function(){
       $('.insert').remove()
     }
   });
+  
+  var post = $('#posts')
+  var masonBuild = function() {
+      post.masonry({
+          itemSelector: '.box',
+          //isAnimated: true,
+          isFitWidth: true
+      });
+  };
+
+    function callMasonry() {
+        var $container = $('#transitions-enabled');
+
+        post.imagesLoaded(masonBuild);
+    }
+
+    var loader = new EmbedlyLoader();
+    loader.loaded.done(callMasonry);
+
 });

@@ -7,7 +7,7 @@
             <%= link_to @post.embedlink, @post.embedlink, class: 'embedly-card' %>
           </p>
         <% else %>
-          <%= cl_image_tag(@post.picture_url, width: 200, height: 200, :default_image => @post.picture.url) %>
+          <%= cl_image_tag(@post.picture_url) %>
         <% end %>
         <div class="panel-body">
           <h1>
@@ -38,3 +38,4 @@
     </div>
   </div>
 </div>
+<%= link_to "Return to Project", project_path, class: "btn btn-default" %>

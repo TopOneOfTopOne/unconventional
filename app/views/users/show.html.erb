@@ -1,9 +1,23 @@
 <h1><%= @user.username %></h1>
 <p id="index-title">User membership status: <%= @user.role.capitalize %></p>
-<p><%= link_to "Edit Account Details", edit_user_registration_path %></p>
+<p><%= link_to "Edit Account Details", edit_user_registration_path, class: "btn btn-primary" %></p>
 
+<div class="transitions-enabled" id="posts">
 <% @user.projects.each do |project| %>
-  <%= link_to project.title, project %>
+  <div class="box panel panel-default">
+    <% if project.posts.first.embedlink? %>
+      <p class="embedly">
+        <%= link_to project.posts.first.embedlink, project, class: 'embedly-card'%>
+      </p>
+    <% else %>
+      <%= link_to project_path(project) do %>
+        <%= cl_image_tag(project.posts.first.picture_url, :default_image => project.posts.first.picture.url) %>
+      <% end %>
+    <% end %>
+    <p class="user">
+      <%= project.title %>
+    </p>
+  </div>
 <% end %>
-
-<%= link_to "Create New Project", new_project_path %>
+</div>
+<%= link_to "Create New Project", new_project_path, class: "btn btn-primary" %>

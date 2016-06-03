@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @project = @post.project
   end
 
   def new
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
 
 
     if @post.save
+      @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was saved"
       redirect_to [@project, @post]
     else
@@ -37,6 +39,7 @@ class PostsController < ApplicationController
 
 
     if @post.save
+      @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was saved"
       redirect_to [@post.project, @post]
     else

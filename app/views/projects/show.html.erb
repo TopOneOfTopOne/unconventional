@@ -1,4 +1,5 @@
-<script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript"></script>
+<script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js"
+ type="text/javascript"></script>
 
 <h2><%=@project.title%></h2>
 
@@ -9,11 +10,13 @@
   <div class="box panel panel-default">
     <% if post.embedlink? %>
       <p class="embedly">
-        <%= link_to post.embedlink, post.embedlink, class: 'embedly-card'%>
+        <%= link_to project_post_path(@project, post) do %>
+            <%= link_to post.embedlink, post.embedlink, class: 'embedly-card falseClick' %>
+        <% end %>
       </p>
     <% else %>
       <%= link_to project_post_path(@project, post) do %>
-        <%= cl_image_tag(post.picture_url, :default_image => post.picture.url) %>
+        <%= cl_image_tag(post.picture_url, :default_images => post.picture.url) %>
       <% end %>
     <% end %>
     <p class="user">
@@ -26,66 +29,3 @@
 <%= link_to "New Post", new_project_post_path(@project), class: 'btn btn-primary' %>
 <%= link_to "Back to Projects", user_path, class: 'btn btn-default' %>
 </div>
-<!--
-<script>
-
-//embedly
-/*
-var boxFind = $(".box").find('.embedly');
-var matches = boxFind.length;
-console.log(boxFind);
-console.log(matches);
-var loaded = 0;
-var post = $('#posts')
-var masonBuild = function() {
-    post.masonry({
-        itemSelector: '.box',
-        isFitWidth: true
-    });
-};
-
-function callMasonry() {
-    var $container = $('#transitions-enabled');
-
-    post.imagesLoaded(masonBuild);
-}
-
-var iframeImgsLength=0;
-var loadedImgs=0;
-var allEm
-
-function callMasonryIfEmbedlyLoaded(iframe) {
-
-  var imgs = $(iframe).contents().find('img');
-  imgs.each(
-    function(i,img){
-      var temp = img.src;
-       img.src="";
-       img.src= temp;
-    }
-  );
-    iframeImgsLength += imgs.length;
-    imgs.load(callMasonryWhenImagesLoaded);
-    loaded++;
-    callMasonryIfEverythingLoaded();
-};
-
-function callMasonryWhenImagesLoaded(){
-  loadedImgs++;
-  callMasonryIfEverythingLoaded();
-}
-
-function callMasonryIfEverythingLoaded(){
-
-    if(loadedImgs == iframeImgsLength &&  loaded == matches){
-      callMasonry();
-    }
-}
-
-
-embedly('on', 'card.rendered', callMasonryIfEmbedlyLoaded);
-
-
-*/
-</script>
--->

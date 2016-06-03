@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  resources :labels, only: [:show]
+
   devise_for :users
 
   resources :users, only: [:index, :show]
@@ -6,7 +9,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :posts
   end
-  
+
   get '/index' => 'welcome#index'
 
   get '/about' => 'welcome#about'

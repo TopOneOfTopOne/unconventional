@@ -2,12 +2,12 @@
 <div class="transitions-enabled" id="posts">
   <% @posts.each do |post| %>
   <div class="box panel panel-default">
-    <%= link_to post_path(post.id) do %>
+    <%= link_to project_posts_path(post.id) do %>
     <%= cl_image_tag(post.picture_url(:large), width: 200, height: 200, :default_image => post.picture.url) %>
     <% end %>
     <p class="user">
       Submitted by
-      <%= pin.user.email %>
+      <%= post.user.email %>
     </p>
   </div>
   <% end %>

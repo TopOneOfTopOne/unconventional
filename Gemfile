@@ -19,7 +19,6 @@ gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'figaro'
 gem 'pry'
-gem 'bcrypt'
 gem 'devise'
 gem 'stripe'
 gem "carrierwave"

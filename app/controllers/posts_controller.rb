@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
     @posts = Post.all.order("created_at DESC")
   end
 
   def show
-    @post = Post.find(params[:id])
     @project = @post.project
   end
 
@@ -30,13 +31,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.assign_attributes(post_params)
-
 
     if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
@@ -49,18 +47,22 @@ class PostsController < ApplicationController
   end
 
   def destroy
-  @post = Post.find(params[:id])
-
-  if @post.destroy
-    flash[:notice] = "\"#{@post.title}\" was deleted successfully."
-    redirect_to @post.project
-  else
-    flash.now[:alert] = "There was an error deleting the post."
-    render :show
+    if @post.destroy
+      flash[:notice] = "\"#{@post.title}\" was deleted successfully."
+      redirect_to @post.project
+    else
+      flash.now[:alert] = "There was an error deleting the post."
+      render :show
+    end
   end
-end
+
+  private
 
   def post_params
     params.require(:post).permit(:title, :description, :embedlink, :picture, :picture_cache)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
